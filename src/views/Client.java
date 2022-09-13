@@ -3,7 +3,6 @@ package views;
 import controller.ProductManager;
 import model.Product;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -103,8 +102,10 @@ public class Client {
     public static void inputEditProduct(Scanner scanner, List<Product> productList) {
         System.out.println("Nhập vào mã sản phẩm cần sửa");
         String id = scanner.nextLine();
+        boolean check = false;
         for (Product a : productList) {
             if (a.getProductId().equals(id)) {
+                check = true;
                 System.out.println("Nhập mã sản phẩm muốn sửa: ");
                 String productCode = scanner.nextLine();
                 System.out.println("Nhập tên sản phẩm muốn sửa: ");
@@ -121,18 +122,21 @@ public class Client {
                 a.setProductAmount(productAmount);
                 a.setProductDescribe(productDescribe);
                 System.out.println("Sửa thành công");
-            } else {
-                System.out.println("Không tìm được sản phẩm ");
-                inputEditProduct(scanner, productList);
             }
+        }
+        if(!check) {
+            System.out.println("Không tìm được sản phẩm");
+            inputEditProduct(scanner, productList);
         }
     }
 
     public static void inputRemoveProduct(Scanner scanner, List<Product> productList) {
         System.out.println("Nhập vào mã sản phẩm muốn xóa: ");
         String productCode = scanner.nextLine();
+        boolean check = false;
         for (Product a : productList) {
             if (a.getProductId().equals(productCode)) {
+                check = true;
                 System.out.println("Bạn có chắc muốn xóa sản phẩm ?");
                 System.out.println("Y: Đồng ý xóa.");
                 System.out.println("Nhập ký tự bất kỳ để thoát");
@@ -144,10 +148,11 @@ public class Client {
                 } else {
                     menu();
                 }
-            } else {
-                System.out.println("Không tìm được sản phẩm");
-                inputRemoveProduct(scanner, productList);
             }
+        }
+        if(!check) {
+            System.out.println("Không tìm được sản phẩm");
+            inputRemoveProduct(scanner, productList);
         }
     }
 }

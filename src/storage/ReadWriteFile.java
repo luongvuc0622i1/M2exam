@@ -32,7 +32,7 @@ public class ReadWriteFile implements IReadWriteData {
             }
             bufferedReader.close();
         } catch (IOException e) {
-            System.out.println("");
+            System.out.println("Lỗi file");
         }
         return productList;
     }
@@ -50,7 +50,7 @@ public class ReadWriteFile implements IReadWriteData {
             }
             bufferedWriter.close();
         } catch (IOException e) {
-            System.out.println("");
+            System.out.println("Lỗi file");
         }
     }
 }
